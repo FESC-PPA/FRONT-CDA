@@ -1,23 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import Loader from "../../components/Loader";
 import LoginForm from "../../components/LoginForm";
+import Layout from "../layout";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { isLoading, hasLogged } = useAuth();
+  const { hasLogged } = useAuth()
 
   useEffect(() => {
-    if (!isLoading && hasLogged) navigate("/admin");
+    if (hasLogged) {
+      // Redirige al usuario a la página "/admin"
+      navigate("/admin");
+    }
   }, [hasLogged]);
 
-  return isLoading ? <Loader /> : (
-    <div className="container">
-      <section className="login text-center">
-        <LoginForm />
-      </section>
-    </div>
+  // Un estado adicional para manejar isLoading
+
+
+  return (
+    <Layout>
+      <div className="container">
+        <section className="login text-center">
+        <LoginForm></LoginForm>
+        </section>
+      </div>
+    </Layout>
   );
 };
 
