@@ -1,12 +1,9 @@
 import { FC } from 'react';
+import { RouterProvider } from "react-router-dom"
 
 import './style.css';
+import { router } from './router';
 
 export const App: FC<{ name: string }> = ({ name }) => {
-  return (
-    <div>
-      <h1>Hello {name}!</h1>
-      <p>Start editing to see some magic happen :)</p>
-    </div>
-  );
+  return <RouterProvider router={router} />
 };
