@@ -8,17 +8,13 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <main>
-      <div className="flex min-h-full w-full flex-col bg-slate-400 grow">
+    <main className="flex flex-col w-screen h-screen overflow-hidden relative justify-center">
       <NavBar></NavBar>
-        <div className="flex h-auto w-screen flex-row grow">
-          <div className="flex w-full bg-blue-400">
-            <section>{children}</section>
-          </div>
-        </div>
-        <div className="flex h-32 w-screen bg-green-400">Footer</div>
+      <div className="px-5 sm:px-10 w-full h-full overflow-auto p-2 flex flex-col  items-center">
+        <section>{children}</section>
       </div>
-    </main>
+      <div className="flex bg-green-400">Footer</div>
+    </main >
   )
 }
 
