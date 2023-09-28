@@ -1,12 +1,7 @@
-import "./styles.scss";
 
 const Loader = () => (
-  <div className="loader-container">
-    <div className="lds-ripple">
-      <div></div>
+  <div className="l">
       Cargando...
-      <div></div>
-    </div>
   </div>
 );
 

@@ -1,31 +1,25 @@
-import { ReactNode } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { ReactNode } from "react"
+import { Link } from "react-router-dom"
+import { NavBar } from "../components/NavBar"
 
 type Props = {
-  customClassName?: string;
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
-const Layout = ({ children, customClassName }: Props) => {
+const Layout = ({ children }: Props) => {
   return (
-    <main className="layout">
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Inicio</Link>
-          </li>
-          <li>
-            <Link to="/login">Iniciar Sesión</Link>
-          </li>
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-        </ul>
-      </nav>
-      <section className={`${customClassName || ""}`}>{children}</section>
-      Footer
+    <main>
+      <div className="flex min-h-full w-full flex-col bg-slate-400 grow">
+      <NavBar></NavBar>
+        <div className="flex h-auto w-screen flex-row grow">
+          <div className="flex w-full bg-blue-400">
+            <section>{children}</section>
+          </div>
+        </div>
+        <div className="flex h-32 w-screen bg-green-400">Footer</div>
+      </div>
     </main>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
