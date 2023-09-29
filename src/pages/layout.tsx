@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import { Link } from "react-router-dom"
-import { NavBar } from "../components/NavBar"
+import Footer from "../components/Footer"
+import { NavBarDefault } from "../components/NavBar"
 
 type Props = {
   children: ReactNode
@@ -9,11 +10,11 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <main className="flex flex-col w-screen h-screen overflow-hidden relative justify-center">
-      <NavBar></NavBar>
-      <div className="px-5 sm:px-10 w-full h-full overflow-auto p-2 flex flex-col  items-center">
-        <section>{children}</section>
+      <NavBarDefault />
+      <div className="px-5 sm:px-10 w-full h-full overflow-auto p-2">
+        <section className="flex flex-col  items-center">{children}</section>
       </div>
-      <div className="flex bg-green-400">Footer</div>
+      <Footer />
     </main >
   )
 }
