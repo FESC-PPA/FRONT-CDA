@@ -3,7 +3,7 @@ import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg
 
 const Footer = () => {
     return (
-        <footer className="flex justify-between items-center py-4 px-6 bg-gray-200">
+        <footer className="flex justify-between items-center py-4 px-6">
             <p className="text-sm text-gray-600">&copy; 2020 Your Company, Inc. All rights reserved.</p>
             <div className="flex space-x-2">
                 <a href="#" target="_blank" rel="noopener noreferrer">

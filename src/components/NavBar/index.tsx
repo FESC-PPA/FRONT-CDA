@@ -40,8 +40,8 @@ export const NavBarDefault = () => {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+            {navigation.map((item, index) => (
+              <a key={`ElementoPrueba4-${item.name}`} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
                 {item.name}
               </a>
             ))}
@@ -76,9 +76,9 @@ export const NavBarDefault = () => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
+                  {navigation.map((item, index) => (
                     <a
-                      key={item.name}
+                      key={`ElementoPrueba3-${item.name}`}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
@@ -126,9 +126,9 @@ export const NavBarAdmin = () => {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <Link
-                        key={item.name}
+                        key={`ElementoPrueba2-${index}`}
                         to={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -214,10 +214,10 @@ export const NavBarAdmin = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Link to={item.href}>I
                     <Disclosure.Button
-                    key={item.name}
+                    key={`elementoPrueba-${index}`}
                     className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'

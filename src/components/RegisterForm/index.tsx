@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export const EmpresaForm = () => {
+export const RegisterForm = () => {
     const [nit, setNit] = useState("");
     const [nombreEmpresa, setNombreEmpresa] = useState("");
     const [idAdmin, setIdAdmin] = useState("");
