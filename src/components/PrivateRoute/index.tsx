@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../../hooks"
-import Loader from "../Loader"
+import { Loader } from "../"
 
 
 const PrivateRoute = (props: { component: any }) => {

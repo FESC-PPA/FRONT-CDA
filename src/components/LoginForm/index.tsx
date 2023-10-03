@@ -34,7 +34,7 @@ const LoginForm = () => {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-primary-dark">
           Sign in to your account
         </h2>
       </div>
@@ -51,7 +51,7 @@ const LoginForm = () => {
               type="email"
               autoComplete="email"
               required
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-primary-light"
             />
           </div>
 
@@ -65,22 +65,22 @@ const LoginForm = () => {
               type="password"
               autoComplete="current-password"
               required
-              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
+              className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-primary-light"
             />
             <div className="text-sm">
-              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              <a href="#" className="font-semibold text-primary hover:text-primary-light">
                 Forgot password?
               </a>
             </div>
           </div>
 
-          <button type="submit" className="w-full bg-blue-400 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+          <button type="submit" className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-light focus:outline-none focus:bg-primary-light">
             Sign in
           </button>
         </form>
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?{' '}
-          <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="font-semibold leading-6 text-primary-dark hover:text-indigo-500">
             Start a 14 day free trial
           </a>
         </p>

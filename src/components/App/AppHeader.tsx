@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Container } from ".."
 import { Link } from "react-router-dom"
 import "./AppHeader.css"
 
@@ -39,7 +38,7 @@ export const AppHeader = () => {
         <header>
             <div className="w-full flex items-center justify-between">
                 <Link to={'/'} >
-                    <span className="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
+                    <span className="flex items-center text-primary no-underline hover:no-underline font-bold text-2xl lg:text-4xl">
                         Control de Asitencia
                     </span>
                 </Link>
