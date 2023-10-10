@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import Layout from "../../layouts/layout";
-import { Fondo } from "../../components/App/fondo";
+import { Fondo } from "../../components";
 
 const Error404Page = () => {
   return (

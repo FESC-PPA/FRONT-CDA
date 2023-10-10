@@ -7,9 +7,7 @@ import { Loader } from "../"
 const PrivateRoute = (props: { component: any }) => {
   const { isLoading, hasLogged } = useAuth()
 
-  return isLoading ? (
-  <Loader />
-) : !isLoading && !hasLogged ? (
+  return  true ? (
   <Navigate to="/login" />
 ) : (
   // Wrap props.component in curly braces to render it

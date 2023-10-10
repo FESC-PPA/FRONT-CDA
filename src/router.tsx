@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/admin",
+    path: "/dashboard",
     element: <PrivateRoute component={<DashboardPage />} />,
   },
   {

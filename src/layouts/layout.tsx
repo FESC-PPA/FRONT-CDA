@@ -1,6 +1,5 @@
 import { ReactNode } from "react"
-import { AppFooter, AppHeader, Container } from "../components"
-import { Fondo } from "../components/App/fondo"
+import { AppFooter, AppHeader, Container, Fondo } from "../components"
 
 type Props = {
   children: ReactNode
