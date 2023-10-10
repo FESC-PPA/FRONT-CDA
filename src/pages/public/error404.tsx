@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Fondo } from "../../components";
+import { AppFondo } from "../../components";
 
 const Error404Page = () => {
   return (
@@ -12,7 +12,7 @@ const Error404Page = () => {
         <body class="h-full">
         ```
       */}
-      <Fondo></Fondo>
+      <AppFondo></AppFondo>
         <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
           <div className="text-center">
             <p className="text-3xl font-semibold bg text-primary">404</p>

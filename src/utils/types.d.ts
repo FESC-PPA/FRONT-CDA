@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+//import { IconDefinition } from '@fortawesome/fontawesome-common-types'
 
 export type LoginData = {
     email: string
@@ -14,4 +15,15 @@ export type ApiResponse = {
 
 export type Children = {
     children: ReactNode
+}
+
+export interface NavigationItem {
+  name: string
+  href: string
+  current: boolean
+  //icon: IconDefinition
+}
+
+export interface AdminNavBarProps {
+  navigation: NavigationItem[]
 }

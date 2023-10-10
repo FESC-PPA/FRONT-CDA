@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import Layout from "../../layouts/layout";
-import { Home } from "../../components";
+import {AppLayout} from "../../layouts/AppLayout";
+import { AppHome } from "../../components";
 
 const HomePage = () => {
   return (
-    <Layout>
-      <Home></Home>
-    </Layout>
+    <AppLayout>
+      <AppHome></AppHome>
+    </AppLayout>
   )
 }
 

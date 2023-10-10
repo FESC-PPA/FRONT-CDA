@@ -1,12 +1,12 @@
 import { ReactNode } from "react"
-import { AppFooter, AppHeader, Container, Fondo } from "../components"
+import { AppFooter, AppHeader, Container, AppFondo } from "../components"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../hooks"
 import { Children } from "../utils/types"
 
 
 
-const Layout = ({ children }: Children) => {
+export const AppLayout = ({ children }: Children) => {
   const navigate = useNavigate();
   const { getHasLogged } = useAuth()
 
@@ -17,7 +17,7 @@ const Layout = ({ children }: Children) => {
 
   return (
     <>
-      <Fondo></Fondo>
+      <AppFondo></AppFondo>
       <div className="h-screen pb-14 bg-right bg-cover">
         <Container>
           <AppHeader />
@@ -28,5 +28,3 @@ const Layout = ({ children }: Children) => {
     </>
   )
 }
-
-export default Layout

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
-import Layout from "../../layouts/layout";
+import {AppLayout} from "../../layouts/AppLayout";
 import { RegisterForm } from "../../components";
 
 const RegisterPage = () => {
@@ -19,9 +19,9 @@ const RegisterPage = () => {
 
 
   return (
-    <Layout>
+    <AppLayout>
       <RegisterForm></RegisterForm>
-    </Layout>
+    </AppLayout>
   );
 };
 

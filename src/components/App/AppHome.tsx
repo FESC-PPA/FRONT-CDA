@@ -1,5 +1,5 @@
-import "./Home.css";
-export const Home = () => {
+import "./AppHome.css";
+export const AppHome = () => {
   return (
     <main className="">
       <div className="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
