@@ -1,11 +1,20 @@
 import { ReactNode } from "react"
 import { AppFooter, AppHeader, Container, Fondo } from "../components"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../hooks"
+import { Children } from "../utils/types"
 
-type Props = {
-  children: ReactNode
-}
 
-const Layout = ({ children }: Props) => {
+
+const Layout = ({ children }: Children) => {
+  const navigate = useNavigate();
+  const { getHasLogged } = useAuth()
+
+  if (getHasLogged() === true) {
+    // Redirige al usuario a la página ""
+    navigate("/dashboard");
+  }
+
   return (
     <>
       <Fondo></Fondo>

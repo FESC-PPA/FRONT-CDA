@@ -1,18 +1,23 @@
 import { ReactNode } from "react"
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks"
 import { Loader } from "../"
+import { Children } from "../../utils/types"
 
 
-const PrivateRoute = (props: { component: any }) => {
-  const { isLoading, hasLogged } = useAuth()
+const PrivateRoute = ({ children }) => {
+  const { hasLogged } = useAuth()
+  const navigate = useNavigate();
 
-  return  true ? (
-  <Navigate to="/login" />
-) : (
-  // Wrap props.component in curly braces to render it
-  props.component
-)
+  if (hasLogged === false) {
+    // Redirige al usuario a la página "/admin"
+    navigate("/login");
+  }
+
+  console.log("private router", hasLogged)
+
+  return children
+  
 }
 
 export default PrivateRoute

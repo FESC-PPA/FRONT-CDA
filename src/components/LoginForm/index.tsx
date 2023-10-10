@@ -1,35 +1,39 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-
-import { emailValidation } from "../../utils/validations";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { signIn } from "../../services/auth";
+import useAuth from "../../hooks/useAuth";
+
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [hasErrors, setErrors] = useState(false);
+  const { login, hasLogged } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    if (!email || !password || !emailValidation(email)) {
-      setErrors(true);
-      return;
+    try {
+      const response = await signIn({ email, password });
+
+      if (response.error) {
+        throw new Error(response.error);
+      }
+
+      login(response.data);
+      //window.location.href = "/dashboard"
+      
+    } catch (error) {
+      console.error(error);
+      // Show error message to the user
     }
-
-    setErrors(false);
-
-    signIn(email, password)
-      .then((user) => {
-        if (user.nom) return navigate("/admin");
-      })
-      .catch(() => {
-        setErrors(true);
-      });
   };
+
+  if (hasLogged === true) {
+    // Redirige al usuario a la página "/admin"
+    navigate("/dashboard");
+  }
+
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center lg:px-8">
@@ -39,7 +43,7 @@ const LoginForm = () => {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="nit"
@@ -54,6 +58,8 @@ const LoginForm = () => {
               autoComplete="email"
               required
               className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-primary-light"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -71,6 +77,8 @@ const LoginForm = () => {
               autoComplete="current-password"
               required
               className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-primary-light"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className="text-sm">
               <a
@@ -103,4 +111,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default LoginForm

@@ -2,21 +2,6 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import "./AppHeader.css"
 
-const links = [
-    {
-        to: "/#features",
-        label: "Features",
-    },
-    {
-        to: "/#solution",
-        label: "Solution",
-    },
-    {
-        to: "/#reviews",
-        label: "Reviews",
-    },
-]
-
 export const AppHeader = () => {
     const [isToggled, setIsToggled] = useState(false)
 

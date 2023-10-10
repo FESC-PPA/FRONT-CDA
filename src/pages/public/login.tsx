@@ -8,15 +8,10 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { hasLogged } = useAuth()
 
-  useEffect(() => {
-    if (hasLogged) {
-      // Redirige al usuario a la página "/admin"
-      navigate("/admin");
-    }
-  }, [hasLogged]);
-
-  // Un estado adicional para manejar isLoading
-
+  if (hasLogged === true) {
+    // Redirige al usuario a la página "/admin"
+    navigate("/dashboard");
+  }
 
   return (
     <Layout>
