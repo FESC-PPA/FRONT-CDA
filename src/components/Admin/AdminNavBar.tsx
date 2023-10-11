@@ -28,7 +28,7 @@ export const AdminNavBar = ({ toggleSidebar }) => {
             />
           </button>
           <h2 className="font-bold text-xl text-primary-light ">
-            Nombre de la Aplicación
+            IFK Colombia
           </h2>
         </div>
 

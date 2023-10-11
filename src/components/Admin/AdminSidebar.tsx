@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHome,
-  faFileAlt,
+  faLock,
+  faFileDownload,
   faUsers,
   faStore,
   faExchangeAlt,
   faSignOutAlt,
+  faGauge,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -17,59 +18,37 @@ export const AdminSidebar = () => {
     >
       <nav>
         <Link
-          to="#"
-          className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
+          to="/dashboard"
+          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
         >
-          <FontAwesomeIcon icon={faHome} className="mr-2" />
-          Inicio
+          <FontAwesomeIcon icon={faGauge} className="mr-2" />
+          Dashboard
         </Link>
 
         <Link
-          className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="#"
+          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
+          to="/management"
         >
-          <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
-          Autorizaciones
+          <FontAwesomeIcon icon={faLock} className="mr-2" />
+          Management
         </Link>
 
         <Link
-          className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="#"
+          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
+          to="/users"
         >
           <FontAwesomeIcon icon={faUsers} className="mr-2" />
           Usuarios
         </Link>
 
         <Link
-          className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="#"
+          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
+          to="/reports"
         >
-          <FontAwesomeIcon icon={faStore} className="mr-2" />
-          Comercios
-        </Link>
-
-        <Link
-          className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="#"
-        >
-          <FontAwesomeIcon icon={faExchangeAlt} className="mr-2" />
-          Transacciones
+          <FontAwesomeIcon icon={faFileDownload} className="mr-2" />
+          Reports
         </Link>
       </nav>
-
-      <Link
-        className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-        to="#"
-      >
-        <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-        Cerrar sesión
-      </Link>
-
-      <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mt-2"></div>
-
-      <p className="mb-1 px-5 py-3 text-left text-xs text-cyan-500">
-        Copyright WCSLAT@2023
-      </p>
     </div>
   );
 };
