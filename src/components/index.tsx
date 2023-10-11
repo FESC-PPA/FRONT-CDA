@@ -1,8 +1,9 @@
-export {AppFooter} from "./App/AppFooter"
-export {AppHeader} from "./App/AppHeader"
-export {Container} from "./App/Container"
-export {AppFondo} from "./App/AppFondo"
-export {AppHome} from "./App/AppHome"
-export {RegisterForm} from "./RegisterForm"
-export {Loader} from "./App/Loader"
-export {AdminNavBar} from "./Admin/AdminNavBar"
+export { AppFooter } from "./App/AppFooter";
+export { AppHeader } from "./App/AppHeader";
+export { Container } from "./App/Container";
+export { AppFondo } from "./App/AppFondo";
+export { AppHome } from "./App/AppHome";
+export { RegisterForm } from "./RegisterForm";
+export { Loader } from "./App/Loader";
+export { AdminNavBar } from "./Admin/AdminNavBar";
+export { AdminSidebar } from "./Admin/AdminSidebar";

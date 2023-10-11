@@ -1,47 +1,49 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { AdminNavBarProps } from "../../utils/types";
+import {
+  faBell,
+  faRightFromBracket,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../hooks";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const AdminNavBar: React.FC<AdminNavBarProps> = ({ navigation }) => {
+export const AdminNavBar = ({ toggleSidebar }) => {
+  const { logout, getHasLogged } = useAuth();
+  const navigate = useNavigate();
+
+  if (getHasLogged() === false) {
+    // Redirige al usuario a la página ""
+    navigate("/login");
+  }
+
   return (
-    <>
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span className="sr-only">Open sidebar</span>
-        <FontAwesomeIcon icon={faBars} className="w-6 h-6" />
-      </button>
-
-      <aside
-        id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidenav"
-      >
-        <div className="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-          <ul className="space-y-2">
-            {navigation.map((item, index) => (
-              <li key={index}>
-                <a
-                  href={item.href}
-                  className={`flex items-center p-2 text-base font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${
-                    item.current ? 'bg-gray-100 dark:bg-gray-700' : ''
-                  }`}
-                >
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    className="w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  />
-                  <span className="ml-3">{item.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+    <div className="bg-white shadow w-full p-2 flex items-center justify-between">
+      <div className="flex items-center">
+        <div className="flex items-center space-x-5">
+          <button id="menuBtn" className="px-2" onClick={toggleSidebar}>
+            <FontAwesomeIcon
+              icon={faBars}
+              className="text-primary-dark text-lg"
+            />
+          </button>
+          <h2 className="font-bold text-xl text-primary-light ">
+            Nombre de la Aplicación
+          </h2>
         </div>
-      </aside>
-    </>
+
+        <div className=" flex items-center"></div>
+      </div>
+
+      <div className="space-x-5">
+        <button onClick={(e) => logout()} type="button">
+          <FontAwesomeIcon
+            icon={faRightFromBracket}
+            className="text-primary text-lg"
+          />
+          <span> Logout </span>
+        </button>
+      </div>
+    </div>
   );
 };

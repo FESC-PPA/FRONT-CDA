@@ -1,35 +1,25 @@
-import { ReactNode } from "react"
-import { AppFooter, AppHeader, Container, AppFondo, AdminNavBar } from "../components"
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "../hooks"
-import { Children } from "../utils/types"
+import { ReactNode } from "react";
+import { AppFooter, Container, AdminSidebar, AdminNavBar } from "../components";
 
-
-
+import { useAuth } from "../hooks";
+import { Children } from "../utils/types";
+import { useState, useEffect } from "react";
 export const AdminLayout = ({ children }: Children) => {
-    const navigate = useNavigate();
-    const { getHasLogged } = useAuth()
+  const [isSidebarVisible, setSidebarVisibility] = useState(true);
 
-    if (getHasLogged() === false) {
-        // Redirige al usuario a la página ""
-        navigate("/login");
-    }
+  const toggleSidebar = () => {
+    setSidebarVisibility(!isSidebarVisible);
+  };
 
-    console.log(getHasLogged())
-
-    return (
-        <>
-            <div className="h-screen pb-14 bg-right bg-cover">
-                <Container>
-                    <AdminNavBar navigation={[
-                        { name: 'Home', href: '/', current: false },
-                        { name: 'Login', href: '/login', current: false },
-                        { name: 'Register', href: '/register', current: false }
-                    ]} />
-                    {children}
-                    <AppFooter />
-                </Container>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="flex flex-col h-screen bg-gray-100">
+        <AdminNavBar toggleSidebar={toggleSidebar} />
+        <div className="flex-1 flex flex-wrap">
+          {isSidebarVisible && <AdminSidebar />}
+          <div className="flex-1 p-4 w-full md:w-1/2">{children}</div>
+        </div>
+      </div>
+    </>
+  );
+};
