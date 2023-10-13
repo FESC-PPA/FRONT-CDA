@@ -5,6 +5,7 @@ import {
   Error404Page,
   HomePage,
   RegisterPage,
+  ManagementPage
 } from "./pages"
 import PrivateRoute from "./components/PrivateRoute"
 
@@ -15,7 +16,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute> <DashboardPage></DashboardPage> </PrivateRoute>,
+    element: <PrivateRoute> <DashboardPage /> </PrivateRoute>,
+  },  
+  {
+    path: "/management",
+    element: <PrivateRoute> <ManagementPage /> </PrivateRoute>,
   },
   {
     path: "/login",

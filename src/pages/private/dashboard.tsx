@@ -1,14 +1,10 @@
-import { useAuth } from "../../hooks";
 import { AdminLayout } from "../../layouts/AdminLayout";
 
 const DashboardPage = () => {
-  const { logout } = useAuth();
   return (
     <AdminLayout>
-      <h1>home</h1>
-      <button onClick={(e) => logout()} type="button">
-        salir
-      </button>
+      aqui va: listado de sedes con botones para editar, eliminar, generar reporte del dia.
+      tambien un boton para crear sede
     </AdminLayout>
   );
 };
