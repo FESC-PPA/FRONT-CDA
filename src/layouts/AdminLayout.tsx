@@ -16,7 +16,7 @@ export const AdminLayout = ({ children }: Children) => {
       <div className="flex flex-col h-screen bg-gray-100">
         <AdminNavBar toggleSidebar={toggleSidebar} />
         <div className="flex-1 flex flex-wrap">
-          {isSidebarVisible && <AdminSidebar />}
+          <AdminSidebar isSidebarVisible={isSidebarVisible} />
           <div className="flex-1 p-4 w-full md:w-1/2">{children}</div>
         </div>
       </div>

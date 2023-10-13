@@ -21,7 +21,11 @@ export const AdminNavBar = ({ toggleSidebar }) => {
     <div className="bg-white shadow w-full p-2 flex items-center justify-between">
       <div className="flex items-center">
         <div className="flex items-center space-x-5">
-          <button id="menuBtn" className="px-2" onClick={toggleSidebar}>
+          <button
+            id="menuBtn"
+            className="px-2  md:hidden"
+            onClick={toggleSidebar}
+          >
             <FontAwesomeIcon
               icon={faBars}
               className="text-primary-dark text-lg"
