@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { signIn } from "../../services/auth";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { signIn } from "../../services/auth";
 
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, hasLogged } = useAuth();
@@ -110,5 +110,3 @@ const LoginForm = () => {
     </div>
   );
 };
-
-export default LoginForm

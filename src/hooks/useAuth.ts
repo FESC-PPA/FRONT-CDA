@@ -10,9 +10,9 @@ interface AuthData {
 }
 
 const useAuth = (): AuthData => {
-  const [access_token, setAccessToken] = useState<string | null>(localStorage.getItem("access_token"));
-  const [expirationDate, setExpirationDate] = useState<Date | null>(new Date(localStorage.getItem("expirationDate")));
-  const [hasLogged, setHasLogged] = useState<boolean>(Boolean(eval(localStorage.getItem("hasLogged"))));
+  const [access_token, setAccessToken] = useState<string | null>(null);
+  const [expirationDate, setExpirationDate] = useState<Date | null>(null);
+  const [hasLogged, setHasLogged] = useState<boolean>(false);
 
   useEffect(() => {
     const storedAccessToken = localStorage.getItem("access_token");

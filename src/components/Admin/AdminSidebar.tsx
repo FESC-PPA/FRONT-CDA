@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 export const AdminSidebar = ({ isSidebarVisible }) => {
   return (
     <div
-      className={`p-2 bg-white w-full md:w-60 flex flex-col md:flex ${
+      className={`p-2 bg-white w-full md:w-auto flex flex-col md:flex ${
         isSidebarVisible ? "hidden" : ""
       }`}
       id="sideNav"
