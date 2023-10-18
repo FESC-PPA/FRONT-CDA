@@ -12,3 +12,4 @@ export { AdminTableSedes } from "./Admin/AdminTableSedes";
 export { AdminModal } from "./Admin/AdminModal";
 export { FormularioSede } from "./Admin/FormularioSede";
 export { EliminarSede } from "./Admin/EliminarSede";
+export { VerSede } from "./Admin/VerSede";

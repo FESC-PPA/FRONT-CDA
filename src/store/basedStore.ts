@@ -23,7 +23,7 @@ const useBased = () => {
   };
 
   const getBasedById = (id: number): Based => {
-    return basedList.find((item) => item.id === id);
+    return getAllBased().find((item) => item.id === id);
   };
 
   const getAllBased = (): Array<Based> => {
@@ -36,7 +36,6 @@ const useBased = () => {
       item.id === id ? data : item,
     );
     updateBasedList(updatedBasedList);
-    alert();
   };
 
   const deleteBasedById = (id: number): void => {

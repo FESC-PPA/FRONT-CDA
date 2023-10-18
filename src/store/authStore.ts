@@ -5,7 +5,7 @@ const useAuth = (): IAuthStore => {
   const [access_token, setAccessToken] = useState<string | null>(null);
   const [expirationDate, setExpirationDate] = useState<Date | null>(null);
   const [hasLogged, setHasLogged] = useState<boolean>(true);
-  localStorage.setItem("hasLogged", "true"); // eliminar
+  //localStorage.setItem("hasLogged", "true"); // eliminar
 
   useEffect(() => {
     const storedAccessToken = localStorage.getItem("access_token");
