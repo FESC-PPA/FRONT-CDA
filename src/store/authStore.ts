@@ -1,18 +1,11 @@
 import { useState, useEffect } from "react";
+import { IAuthStore } from "../utils/types";
 
-interface AuthData {
-  access_token: string | null
-  expirationDate: Date | null
-  hasLogged: boolean
-  login: Function
-  logout: Function
-  getHasLogged: Function
-}
-
-const useAuth = (): AuthData => {
+const useAuth = (): IAuthStore => {
   const [access_token, setAccessToken] = useState<string | null>(null);
   const [expirationDate, setExpirationDate] = useState<Date | null>(null);
-  const [hasLogged, setHasLogged] = useState<boolean>(false);
+  const [hasLogged, setHasLogged] = useState<boolean>(true);
+  localStorage.setItem("hasLogged", "true"); // eliminar
 
   useEffect(() => {
     const storedAccessToken = localStorage.getItem("access_token");
@@ -21,13 +14,13 @@ const useAuth = (): AuthData => {
 
     if (storedAccessToken && storedExpirationDate) {
       const parsedExpirationDate = new Date(storedExpirationDate);
-      const parseHasLogged = Boolean(eval(storedHasLogged))
+      const parseHasLogged = Boolean(eval(storedHasLogged));
       if (parsedExpirationDate > new Date()) {
         setAccessToken(storedAccessToken);
         setExpirationDate(parsedExpirationDate);
         setHasLogged(parseHasLogged);
       } else {
-        logout()
+        logout();
       }
     }
   }, []);
@@ -51,10 +44,17 @@ const useAuth = (): AuthData => {
     localStorage.removeItem("expirationDate");
   };
   const getHasLogged = () => {
-    return Boolean(eval(localStorage.getItem("hasLogged")))
-  }
+    return Boolean(eval(localStorage.getItem("hasLogged")));
+  };
 
-  return { access_token, expirationDate, hasLogged, login, logout,getHasLogged };
+  return {
+    access_token,
+    expirationDate,
+    hasLogged,
+    login,
+    logout,
+    getHasLogged,
+  };
 };
 
 export default useAuth;

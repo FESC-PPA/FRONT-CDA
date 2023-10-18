@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../../store";
 import { AppLayout } from "../../layouts/AppLayout";
 import { RegisterForm } from "../../components";
 

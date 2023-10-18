@@ -8,3 +8,7 @@ export { RegisterForm } from "./App/RegisterForm";
 export { Loader } from "./App/Loader";
 export { AdminNavBar } from "./Admin/AdminNavBar";
 export { AdminSidebar } from "./Admin/AdminSidebar";
+export { AdminTableSedes } from "./Admin/AdminTableSedes";
+export { AdminModal } from "./Admin/AdminModal";
+export { FormularioSede } from "./Admin/FormularioSede";
+export { EliminarSede } from "./Admin/EliminarSede";

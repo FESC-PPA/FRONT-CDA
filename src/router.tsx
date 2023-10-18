@@ -1,12 +1,16 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom";
 import {
   LoginPage,
-  DashboardPage,
+  ReportsPage,
+  BasedsPage,
   Error404Page,
   HomePage,
   RegisterPage,
-} from "./pages"
-import PrivateRoute from "./components/PrivateRoute"
+  ManagementPage,
+  BasedPage,
+  UsersPage,
+} from "./pages";
+import PrivateRoute from "./components/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -14,8 +18,44 @@ export const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/dashboard",
-    element: <PrivateRoute> <DashboardPage /> </PrivateRoute>,
+    path: "/baseds",
+    element: (
+      <PrivateRoute>
+        <BasedsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/baseds/:id",
+    element: (
+      <PrivateRoute>
+        <BasedPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/management",
+    element: (
+      <PrivateRoute>
+        <ManagementPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/users",
+    element: (
+      <PrivateRoute>
+        <UsersPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/reports",
+    element: (
+      <PrivateRoute>
+        <ReportsPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/login",
@@ -29,4 +69,4 @@ export const router = createBrowserRouter([
     path: "*",
     element: <Error404Page />,
   },
-])
+]);

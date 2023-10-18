@@ -6,50 +6,36 @@ import {
   faStore,
   faExchangeAlt,
   faSignOutAlt,
-  faGauge,
+  faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export const AdminSidebar = ({ isSidebarVisible }) => {
+  const links = [
+    { label: "Baseds", to: "/baseds", icon: faBuilding, active: false },
+    { label: "Management", to: "/management", icon: faLock, active: false },
+    { label: "Usuarios", to: "/users", icon: faUsers, active: false },
+    { label: "Reports", to: "/reports", icon: faFileDownload, active: false },
+  ];
+
   return (
     <div
-      className={`p-2 bg-white w-full md:w-auto flex flex-col md:flex ${
+      className={`rounded-lg shadow-lg px-2 mx-2 my-1 bg-gray-200 w-auto flex flex-col md:flex ${
         isSidebarVisible ? "hidden" : ""
       }`}
       id="sideNav"
     >
       <nav>
-        <Link
-          to="/dashboard"
-          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-        >
-          <FontAwesomeIcon icon={faGauge} className="mr-2" />
-          Dashboard
-        </Link>
-
-        <Link
-          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="/management"
-        >
-          <FontAwesomeIcon icon={faLock} className="mr-2" />
-          Management
-        </Link>
-
-        <Link
-          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="/users"
-        >
-          <FontAwesomeIcon icon={faUsers} className="mr-2" />
-          Usuarios
-        </Link>
-
-        <Link
-          className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
-          to="/reports"
-        >
-          <FontAwesomeIcon icon={faFileDownload} className="mr-2" />
-          Reports
-        </Link>
+        {links.map((l, i) => (
+          <Link
+            key={`LinkBar${i}`}
+            to={l.to}
+            className="block text-primary py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-primary hover:from-cyan-500 hover:to-cyan-500 hover:text-white"
+          >
+            <FontAwesomeIcon icon={l.icon} className="mr-2" />
+            {l.label}
+          </Link>
+        ))}
       </nav>
     </div>
   );

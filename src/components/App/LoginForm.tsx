@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../store";
 import { signIn } from "../../services/auth";
-
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, hasLogged } = useAuth();
+  const { login, getHasLogged } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,23 +16,22 @@ export const LoginForm = () => {
       const response = await signIn({ email, password });
 
       if (response.error) {
-        throw new Error(response.error);
+        //throw new Error(response.error);
+        console.error(response.error);
+      } else {
+        login(response.data);
       }
-
-      login(response.data);
       //window.location.href = "/dashboard"
-      
     } catch (error) {
       console.error(error);
       // Show error message to the user
     }
   };
 
-  if (hasLogged === true) {
+  if (getHasLogged() === true) {
     // Redirige al usuario a la página "/admin"
-    navigate("/dashboard");
+    navigate("/baseds");
   }
-
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center lg:px-8">
