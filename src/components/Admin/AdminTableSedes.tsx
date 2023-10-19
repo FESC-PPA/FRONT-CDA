@@ -151,7 +151,7 @@ export const AdminTableSedes = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <Link to={"/baseds/" + item.id}>
                             <button
-                              className="btn bg-white text-primary hover:bg-white tooltip tooltip-left"
+                              className="btn bg-cyan-500 text-white hover:bg-cyan-700 tooltip tooltip-left"
                               data-tip="Ver detalles"
                             >
                               <FontAwesomeIcon icon={faEye} />
