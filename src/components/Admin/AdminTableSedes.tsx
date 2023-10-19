@@ -18,30 +18,39 @@ export const AdminTableSedes = () => {
   const store = useBased();
   const [sedesList, setSedes] = useState<Based[]>([]);
   const [searchText, setSearchText] = useState("");
+  const [filteredSedesList, setFilteredSedesList] = useState<Based[]>([]);
 
   useEffect(() => {
-    const allBased = store.getAllBased();
-    if (allBased.length > 0) {
-      setSedes(allBased);
-    } else {
-      try {
-        //vconst response = await getAllSede();
-        const response = getAllSede();
+    const fetchData = async () => {
+      const allBased = store.getAllBased();
+      if (allBased.length > 0) {
+        setSedes(allBased);
+      } else {
+        try {
+          const response = await getAllSede();
 
-        if (response.error) {
-          console.error(response.error);
-        } else {
-          setSedes(response.data);
-          store.updateBasedList(response.data);
+          if (response.error) {
+            console.error(response.error);
+          } else {
+            setSedes(response.data);
+            store.updateBasedList(response.data);
+          }
+        } catch (error) {
+          console.error(error);
+          // Muestra un mensaje de error al usuario
         }
-
-        //window.location.href = "/dashboard"
-      } catch (error) {
-        console.error(error);
-        // Show error message to the user
       }
-    }
-  });
+    };
+
+    fetchData(); // Llama a la función fetchData para realizar la carga de datos una vez
+  }, []);
+
+  useEffect(() => {
+    const filteredSedes = sedesList.filter((sede) =>
+      sede.name.toLowerCase().includes(searchText.toLowerCase()),
+    );
+    setFilteredSedesList(filteredSedes);
+  }, [sedesList, searchText]);
 
   const handleSearchInputChange = (e) => {
     setSearchText(e.target.value);
@@ -79,7 +88,7 @@ export const AdminTableSedes = () => {
                   title="crear una nueva sede"
                   label="Nuena sede"
                 >
-                  <FormularioSede />
+                  <FormularioSede setSedes={setSedes} />
                 </AdminModal>
               </div>
               <div className="overflow-hidden">
@@ -125,7 +134,7 @@ export const AdminTableSedes = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 darkk:divide-gray-700">
-                    {sedesList.map((item: Based, index) => (
+                    {filteredSedesList.map((item: Based, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 darkk:text-gray-200">
                           <Link
@@ -165,7 +174,7 @@ export const AdminTableSedes = () => {
                             css="btn bg-yellow-500 text-white hover:bg-yellow-700 tooltip tooltip-left"
                             atributes={{ "data-tip": "editar sede" }}
                           >
-                            <FormularioSede id={item.id} />
+                            <FormularioSede id={item.id} setSedes={setSedes} />
                           </AdminModal>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -176,7 +185,7 @@ export const AdminTableSedes = () => {
                             css="btn bg-red-500 text-white hover:bg-red-700 tooltip tooltip-left"
                             atributes={{ "data-tip": "Eliminar sede" }}
                           >
-                            <EliminarSede id={item.id} />
+                            <EliminarSede id={item.id} setSedes={setSedes} />
                           </AdminModal>
                         </td>
                       </tr>

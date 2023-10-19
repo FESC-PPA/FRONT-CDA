@@ -3,25 +3,24 @@ import { newBased, setBased } from "../../services/sede";
 import { useBased } from "../../store";
 import { Based } from "../../utils/types";
 
-interface id {
+interface FormularioSede {
   id?: number;
+  setSedes: Function;
 }
-export const FormularioSede = ({ id }: id) => {
+export const FormularioSede = ({ id, setSedes }: FormularioSede) => {
   const store = useBased();
   const [nombreSede, setNombreSede] = useState("");
   const [ubicacionSede, setUbicacionSede] = useState("");
-  const [vandera, setVandera] = useState(true);
 
   useEffect(() => {
-    if (id && vandera) {
+    if (id) {
       const based = store.getBasedById(id);
       if (based) {
         setNombreSede(based.name);
         setUbicacionSede(based.location);
-        setVandera(false);
       }
     }
-  });
+  }, []);
   // Efecto para cargar datos cuando id cambia
 
   const guardarSede = () => {
@@ -68,6 +67,7 @@ export const FormularioSede = ({ id }: id) => {
         console.error(error);
       }
     }
+    setSedes(store.getAllBased());
   };
   return (
     <>

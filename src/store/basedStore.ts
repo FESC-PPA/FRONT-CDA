@@ -11,7 +11,7 @@ const useBased = () => {
     if (storedBaseList) {
       setBasedList(JSON.parse(storedBaseList));
     }
-  });
+  }, []);
 
   const updateBasedList = (newList: Array<Based>): void => {
     setBasedList(newList);

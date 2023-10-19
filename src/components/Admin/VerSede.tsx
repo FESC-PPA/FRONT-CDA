@@ -1,18 +1,18 @@
 import { deleteBasedById } from "../../services/sede";
 import { useEffect, useState } from "react";
 import { useBased } from "../../store";
-import { Based } from "../../utils/types";
+import { Based, IVerSede } from "../../utils/types";
 import { ReactElement } from "react";
 
-export const VerSede = ({ id }): ReactElement => {
+export const VerSede = ({ id }: IVerSede): ReactElement => {
   const store = useBased();
-  const [based, setBased] = useState<Based>({ name: "", location: "" });
+  const [based, setBased] = useState<Based>();
 
   useEffect(() => {
     const based = store.getBasedById(id);
     console.log(based);
     setBased(based);
-  });
+  }, []);
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">

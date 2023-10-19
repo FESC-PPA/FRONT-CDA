@@ -2,7 +2,7 @@ import { deleteBasedById } from "../../services/sede";
 import { useBased } from "../../store";
 import { ReactElement } from "react";
 
-export const EliminarSede = ({ id }): ReactElement => {
+export const EliminarSede = ({ id, setSedes }): ReactElement => {
   const store = useBased();
   const eliminar = () => {
     try {
@@ -19,6 +19,7 @@ export const EliminarSede = ({ id }): ReactElement => {
     } catch (error) {
       console.error(error);
     }
+    setSedes(store.getAllBased());
   };
 
   return (

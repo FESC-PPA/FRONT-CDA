@@ -6,7 +6,7 @@ const BasedPage = () => {
   const { id } = useParams();
   return (
     <AdminLayout>
-      <VerSede id={id} />
+      <VerSede id={parseInt(id)} />
     </AdminLayout>
   );
 };

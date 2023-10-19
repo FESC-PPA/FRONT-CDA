@@ -114,3 +114,6 @@ export interface INavigationItem {
 export interface AdminNavBarProps {
   navigation: Array<INavigationItem>;
 }
+interface IVerSede {
+  id: number;
+}

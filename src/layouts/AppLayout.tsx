@@ -12,7 +12,7 @@ export const AppLayout = ({ children }: Children) => {
       // Redirige al usuario a la página ""
       navigate("/baseds");
     }
-  });
+  }, []);
 
   return (
     <>
