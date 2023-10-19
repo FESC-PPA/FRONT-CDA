@@ -1,5 +1,6 @@
 export { AppFooter } from "./App/AppFooter";
 export { AppHeader } from "./App/AppHeader";
+export { App404 } from "./App/App404";
 export { Container } from "./App/Container";
 export { AppFondo } from "./App/AppFondo";
 export { LoginForm } from "./App/LoginForm";

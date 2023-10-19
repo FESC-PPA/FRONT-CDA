@@ -1,12 +1,9 @@
-import {LoginForm} from "../../components/";
-import {AppLayout} from "../../layouts/AppLayout";
+import { LoginForm } from "../../components/";
+import { AppLayout } from "../../layouts/AppLayout";
 
-const LoginPage = () => {
-  return (
-    <AppLayout>
-          <LoginForm></LoginForm>
-    </AppLayout>
-  );
-};
-
+const LoginPage = () => (
+  <AppLayout>
+    <LoginForm />
+  </AppLayout>
+);
 export default LoginPage;

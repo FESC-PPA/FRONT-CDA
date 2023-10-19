@@ -1,12 +1,9 @@
 import { AdminLayout } from "../../layouts/AdminLayout";
 
-const ManagementPage = () => {
-  return (
-    <AdminLayout>
-      <h1>hjjjjj</h1>
-    
-    </AdminLayout>
-  );
-};
+const ManagementPage = () => (
+  <AdminLayout>
+    <h1>Management</h1>
+  </AdminLayout>
+);
 
 export default ManagementPage;
