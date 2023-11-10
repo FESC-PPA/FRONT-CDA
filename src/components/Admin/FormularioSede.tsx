@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
-import { newBased, setBased } from "../../services/sede";
-import { useBased } from "../../store";
-import { Based } from "../../utils/types";
+import { basedService } from "../../services/based";
+import { useBased } from "../../storage";
+import { Based } from "../../types";
+import { statusOk } from "../../utils/validations";
 
 interface id {
   id?: number;
 }
 export const FormularioSede = ({ id }: id) => {
-  const store = useBased();
+  const { update, create } = basedService()
+  const { setBasedById, saveBased, getBasedById } = useBased();
   const [nombreSede, setNombreSede] = useState("");
   const [ubicacionSede, setUbicacionSede] = useState("");
   const [vandera, setVandera] = useState(true);
 
   useEffect(() => {
     if (id && vandera) {
-      const based = store.getBasedById(id);
+      const based = getBasedById(id);
       if (based) {
         setNombreSede(based.name);
         setUbicacionSede(based.location);
         setVandera(false);
       }
     }
-  });
+  }, []);
   // Efecto para cargar datos cuando id cambia
 
-  const guardarSede = () => {
+  const guardarSede = async () => {
     if (id) {
       const modal = document.getElementById("editarSedeModal" + id);
 
@@ -34,12 +36,12 @@ export const FormularioSede = ({ id }: id) => {
           name: nombreSede,
           location: ubicacionSede,
         };
-        const response = setBased(data);
+        const response = await update(data);
 
-        if (response.error) {
-          console.error(response.error);
+        if (!statusOk(response.status)) {
+          console.error(response.data.message);
         } else {
-          store.setBasedById(id, data);
+          setBasedById(id, response.data.based);
           if (modal && modal instanceof HTMLDialogElement) {
             modal.close();
           }
@@ -51,15 +53,15 @@ export const FormularioSede = ({ id }: id) => {
       const modal = document.getElementById("nuevaSedeModal");
 
       try {
-        const response = newBased({
+        const response = await create({
           name: nombreSede,
           location: ubicacionSede,
         });
 
-        if (response.error) {
-          console.error(response.error);
+        if (!statusOk(response.status)) {
+          console.error(response.data.message);
         } else {
-          store.saveBased(response.data);
+          saveBased(response.data);
           if (modal && modal instanceof HTMLDialogElement) {
             modal.close();
           }

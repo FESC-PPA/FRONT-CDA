@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AppFondo } from "../../components";
-import { useAuth } from "../../store";
+import { useAuth } from "../../storage";
 
 const Error404Page = () => {
   const { getHasLogged } = useAuth();

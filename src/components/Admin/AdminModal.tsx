@@ -1,4 +1,4 @@
-import { IAdminModal } from "../../utils/types";
+import { IAdminModal } from "../../types";
 //import { IAdminModal } from "../../utils/type.d.ts";
 export const AdminModal = ({
   children,

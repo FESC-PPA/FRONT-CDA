@@ -1,10 +1,10 @@
-import { LOGIN_POST } from "../utils/endpoint";
-import { Based, IApiResponse } from "../utils/types";
+import { AUTH_LOGIN_ENDPOINT } from "../utils";
+import { Based, IApiResponse } from "../types";
 
 export const getAllSede =
   /*async*/ (): IApiResponse /*Promise<IApiResponse>*/ => {
     return {
-      statusCode: 200,
+      status: 200,
       data: [
         {
           id: 1,
@@ -37,7 +37,7 @@ export const getAllSede =
 export const deleteBasedById = (id: number): IApiResponse => {
   // hace peticion para borrar
   return {
-    statusCode: 204,
+    status: 204,
     data: true,
   };
 };
@@ -45,7 +45,7 @@ export const deleteBasedById = (id: number): IApiResponse => {
 export const setBased = (data: Based): IApiResponse => {
   // peticion para actualizar
   return {
-    statusCode: 200,
+    status: 200,
     data,
   };
 };
@@ -53,7 +53,7 @@ export const setBased = (data: Based): IApiResponse => {
 export const newBased = (data: Based): IApiResponse => {
   // hace peticion para guardar
   return {
-    statusCode: 201,
+    status: 201,
     data: { ...data, id: Math.floor(Math.random() * (1000 - 10 + 1) + 10) },
   };
 };

@@ -11,8 +11,8 @@ import {
 
 import { AdminModal, FormularioSede, EliminarSede } from "../";
 import { getAllSede } from "../../services/sede";
-import { useBased } from "../../store";
-import { Based } from "../../utils/types";
+import { useBased } from "../../storage";
+import { Based } from "../../types";
 
 export const AdminTableSedes = () => {
   const store = useBased();
@@ -28,20 +28,19 @@ export const AdminTableSedes = () => {
         //vconst response = await getAllSede();
         const response = getAllSede();
 
-        if (response.error) {
-          console.error(response.error);
-        } else {
+        if (response.status >= 200 && response.status < 300) {
           setSedes(response.data);
           store.updateBasedList(response.data);
+        } else {
+          console.error(response.data.message);
         }
 
-        //window.location.href = "/dashboard"
       } catch (error) {
         console.error(error);
         // Show error message to the user
       }
     }
-  });
+  }, []);
 
   const handleSearchInputChange = (e) => {
     setSearchText(e.target.value);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { IAuthStore } from "../utils/types";
+import { IAuthStore } from "../types";
 
 const useAuth = (): IAuthStore => {
   const [access_token, setAccessToken] = useState<string | null>(null);
@@ -25,7 +25,7 @@ const useAuth = (): IAuthStore => {
     }
   }, []);
 
-  const login = ({ access_token, expires_in }) => {
+  const saveSesion = ({ access_token, expires_in }) => {
     const expirationDate = new Date(Date.now() + expires_in * 1000);
     setAccessToken(access_token);
     setExpirationDate(expirationDate);
@@ -51,7 +51,7 @@ const useAuth = (): IAuthStore => {
     access_token,
     expirationDate,
     hasLogged,
-    login,
+    saveSesion,
     logout,
     getHasLogged,
   };

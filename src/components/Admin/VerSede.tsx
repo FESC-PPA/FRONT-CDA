@@ -1,7 +1,7 @@
 import { deleteBasedById } from "../../services/sede";
 import { useEffect, useState } from "react";
-import { useBased } from "../../store";
-import { Based } from "../../utils/types";
+import { useBased } from "../../storage";
+import { Based } from "../../types";
 import { ReactElement } from "react";
 
 export const VerSede = ({ id }): ReactElement => {
@@ -12,7 +12,7 @@ export const VerSede = ({ id }): ReactElement => {
     const based = store.getBasedById(id);
     console.log(based);
     setBased(based);
-  });
+  }, []);
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">

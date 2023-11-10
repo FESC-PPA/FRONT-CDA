@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Based } from "../../utils/types";
+import { Based } from "../../types";
 import { ReactNode } from "react";
 export const FormularioHorario = () => {
   const [diaSemana, setDiaSemana] = useState("Lunes");
@@ -34,7 +34,7 @@ export const FormularioHorario = () => {
     return 0;
   });
 
-  const guardarHorario = () => {};
+  const guardarHorario = () => { };
 
   return (
     <>

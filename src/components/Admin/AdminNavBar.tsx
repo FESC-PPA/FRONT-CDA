@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../../store";
+import { useAuth } from "../../storage";
 import { useNavigate } from "react-router-dom";
 
 export const AdminNavBar = ({ toggleSidebar }) => {

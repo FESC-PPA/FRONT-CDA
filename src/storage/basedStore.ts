@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Based } from "../utils/types";
+import { Based } from "../types";
 
 const useBased = () => {
   const [basedList, setBasedList] = useState<Array<Based>>([]);
@@ -11,7 +11,7 @@ const useBased = () => {
     if (storedBaseList) {
       setBasedList(JSON.parse(storedBaseList));
     }
-  });
+  }, []);
 
   const updateBasedList = (newList: Array<Based>): void => {
     setBasedList(newList);

@@ -1,19 +1,19 @@
 import { ReactNode } from "react";
 //import { IconDefinition } from '@fortawesome/fontawesome-common-types'
 
-export type Organization = {
+type Organization = {
   id?: number;
   nit: string;
   name: string;
 };
 
-export type Role = {
+type Role = {
   id?: number;
   role: string;
   details: string;
 };
 
-export type User = {
+type User = {
   id?: number;
   identify: string;
   firstName: string;
@@ -23,7 +23,7 @@ export type User = {
   role?: Role;
 };
 
-export type Auth = {
+type Auth = {
   id?: number;
   email: string;
   password: string;
@@ -31,44 +31,44 @@ export type Auth = {
   user?: User;
 };
 
-export type FaceID = {
+type FaceID = {
   id?: number;
   dara: any;
   user?: User;
 };
 
-export type Based = {
+type Based = {
   id?: number;
   name: string;
   location: string;
   organization?: Organization;
 };
 
-export type Schedule = {
+type Schedule = {
   id?: number;
   name: string;
   based: Based;
 };
 
-export type UserSchedule = {
+type UserSchedule = {
   id?: number;
   schedule?: Schedule;
   user?: User;
 };
 
-export type Attendance = {
+type Attendance = {
   id?: number;
   userSchedule?: UserSchedule;
   date: Date;
   late: number;
 };
 
-export type Weekdays = {
+type Weekdays = {
   id?: number;
   day: string;
 };
 
-export type Workdays = {
+type Workdays = {
   id?: number;
   weekdays?: Weekdays;
   schedule?: Schedule;
@@ -76,26 +76,25 @@ export type Workdays = {
   endTime: string;
 };
 
-export interface IAuthStore {
+interface IAuthStore {
   access_token: string | null;
   expirationDate: Date | null;
   hasLogged: boolean;
-  login: Function;
+  saveSesion: Function;
   logout: Function;
   getHasLogged: Function;
 }
 
-export interface IApiResponse {
+interface IApiResponse {
   data: any;
-  error?: string[];
-  statusCode: number;
+  status: number;
 }
 
-export type Children = {
+type Children = {
   children: ReactNode;
 };
 
-export interface IAdminModal {
+interface IAdminModal {
   children: ReactNode;
   id: string;
   title: string;
@@ -104,13 +103,21 @@ export interface IAdminModal {
   atributes?: object;
 }
 
-export interface INavigationItem {
+interface INavigationItem {
   name: string;
   href: string;
   current: boolean;
   //icon: IconDefinition
 }
 
-export interface AdminNavBarProps {
+interface AdminNavBarProps {
   navigation: Array<INavigationItem>;
+}
+
+interface IService {
+  create: (data) => Promise<IApiResponse>
+  findAll: () => Promise<IApiResponse>
+  findOne: (by) => Promise<IApiResponse>
+  update: (data) => Promise<IApiResponse>
+  remove: (by) => Promise<IApiResponse>
 }

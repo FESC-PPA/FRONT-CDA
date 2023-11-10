@@ -1,14 +1,15 @@
 import { deleteBasedById } from "../../services/sede";
-import { useBased } from "../../store";
+import { useBased } from "../../storage";
 import { ReactElement } from "react";
+import { statusOk } from "../../utils/validations";
 
 export const EliminarSede = ({ id }): ReactElement => {
   const store = useBased();
   const eliminar = () => {
     try {
       const result = deleteBasedById(id); // await
-      if (result.error) {
-        console.error(result.error);
+      if (!statusOk(result.status)) {
+        console.error(result.data.message);
       } else {
         store.deleteBasedById(id);
         var modal = document.getElementById(`eliminarSedeModal${id}`);

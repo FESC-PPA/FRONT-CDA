@@ -6,8 +6,8 @@ import {
   AppFondo,
 } from "../components";
 
-import { useAuth } from "../store";
-import { Children } from "../utils/types";
+import { useAuth } from "../storage";
+import { Children } from "../types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export const AdminLayout = ({ children }: Children) => {

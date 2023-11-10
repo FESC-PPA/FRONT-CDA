@@ -5,3 +5,5 @@ export const emailValidation = (email: string) => {
   );
   return emailRegex.test(email);
 };
+
+export const statusOk = (status: number): boolean => status >= 200 && status < 300

@@ -1,33 +1,28 @@
-import { LOGIN_POST } from "../utils/endpoint";
-import { IApiResponse, Auth } from "../utils/types";
-import { emailValidation } from "../utils/validations";
+import { AUTH_LOGIN_ENDPOINT } from "../constants";
+import { IApiResponse, Auth } from "../types";
+import { emailValidation, fetchApi } from "../utils";
 
-const signInWithEmailAndPassword = async (
-  data: Auth,
-): Promise<IApiResponse> => {
-  const response = await fetch(LOGIN_POST, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return response.json();
-};
+export const authService = () => {
+  const signInWithEmailAndPassword = async (data: Auth,): Promise<IApiResponse> => fetchApi(AUTH_LOGIN_ENDPOINT, "POST", data)
 
-export const signIn = async ({
-  email,
-  password,
-}: Auth): Promise<IApiResponse> => {
-  // validar datos
-  if (!emailValidation(email)) {
-    return;
+  const signOut = async () => {
+    return null;
+  };
+
+  const logIn = async ({ email, password, }: Auth): Promise<IApiResponse> => {
+    // validar datos
+    if (!emailValidation(email)) {
+      return;
+    }
+    return await signInWithEmailAndPassword({ email, password });
+  };
+
+  const logOut = async () => await signOut();
+
+  const register = () => {
+
   }
-  return await signInWithEmailAndPassword({ email, password });
-};
 
-const signOut = async () => {
-  return null;
-};
+  return { logIn, logOut, register }
+}
 
-export const logout = async () => await signOut();
