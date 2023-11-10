@@ -1,4 +1,3 @@
-import { AUTH_LOGIN_ENDPOINT } from "../utils";
 import { Based, IApiResponse } from "../types";
 
 export const getAllSede =

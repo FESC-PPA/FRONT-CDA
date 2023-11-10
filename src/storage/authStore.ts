@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { IAuthStore } from "../types";
 
 const useAuth = (): IAuthStore => {
-  const [access_token, setAccessToken] = useState<string | null>(null);
   const [expirationDate, setExpirationDate] = useState<Date | null>(null);
   const [hasLogged, setHasLogged] = useState<boolean>(true);
+  const [access_token, setAccessToken] = useState<string>();
   //localStorage.setItem("hasLogged", "true"); // eliminar
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const useAuth = (): IAuthStore => {
   }, []);
 
   const saveSesion = ({ access_token, expires_in }) => {
-    const expirationDate = new Date(Date.now() + expires_in * 1000);
+    const expirationDate = new Date(Date.now() + expires_in);
     setAccessToken(access_token);
     setExpirationDate(expirationDate);
     setHasLogged(true);

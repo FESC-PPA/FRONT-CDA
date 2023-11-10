@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../storage";
-import { authService } from "../../services";
+import { useAuthService } from "../../services";
 import { statusOk } from "../../utils";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { saveSesion, getHasLogged } = useAuth();
-  const service = authService()
+  const authService = useAuthService()
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await service.logIn({ email, password });
+      const response = await authService.logIn({ email, password });
 
       if (!statusOk(response.status)) {
         //throw new Error(response.error);
