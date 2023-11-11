@@ -1,8 +1,13 @@
-import { useAuth } from "../storage"
 import { IApiResponse } from "../types"
-const { access_token } = useAuth()
+//const { getToken } = useAuth()
+type FfetchApi = {
+    url: string,
+    method: string,
+    body?: any,
+    access_token?: string
+}
 
-const fetchApi = async (url: string, method: string, body?: any): Promise<IApiResponse> => {
+export const fetchApi = async ({ url, method, body, access_token }: FfetchApi): Promise<IApiResponse> => {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await fetch(url, {
@@ -21,5 +26,3 @@ const fetchApi = async (url: string, method: string, body?: any): Promise<IApiRe
     })
 
 }
-
-export { fetchApi }

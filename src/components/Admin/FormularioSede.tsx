@@ -5,21 +5,24 @@ import { Based } from "../../types";
 import { statusOk } from "../../utils/validations";
 
 interface id {
-  id?: number;
+  basedId?: number;
+  setSedes: Function
 }
-export const FormularioSede = ({ id }: id) => {
+export const FormularioSede = ({ basedId, setSedes }: id) => {
   const { update, create } = basedService()
   const { setBasedById, saveBased, getBasedById } = useBased();
   const [nombreSede, setNombreSede] = useState("");
   const [ubicacionSede, setUbicacionSede] = useState("");
   const [vandera, setVandera] = useState(true);
+  const { getAllBased } = useBased();
+
 
   useEffect(() => {
-    if (id && vandera) {
-      const based = getBasedById(id);
+    if (basedId && vandera) {
+      const based = getBasedById(basedId);
       if (based) {
         setNombreSede(based.name);
-        setUbicacionSede(based.location);
+        setUbicacionSede(based.perimeterLocations);
         setVandera(false);
       }
     }
@@ -27,21 +30,21 @@ export const FormularioSede = ({ id }: id) => {
   // Efecto para cargar datos cuando id cambia
 
   const guardarSede = async () => {
-    if (id) {
-      const modal = document.getElementById("editarSedeModal" + id);
-
+    if (basedId) {
+      const modal = document.getElementById("editarSedeModal" + basedId);
+      console.log(basedId)
       try {
         const data: Based = {
-          id,
+          basedId,
           name: nombreSede,
-          location: ubicacionSede,
+          perimeterLocations: ubicacionSede,
         };
         const response = await update(data);
 
         if (!statusOk(response.status)) {
           console.error(response.data.message);
         } else {
-          setBasedById(id, response.data.based);
+          setBasedById(basedId, response.data);
           if (modal && modal instanceof HTMLDialogElement) {
             modal.close();
           }
@@ -55,7 +58,7 @@ export const FormularioSede = ({ id }: id) => {
       try {
         const response = await create({
           name: nombreSede,
-          location: ubicacionSede,
+          perimeterLocations: ubicacionSede,
         });
 
         if (!statusOk(response.status)) {
@@ -70,6 +73,8 @@ export const FormularioSede = ({ id }: id) => {
         console.error(error);
       }
     }
+
+    setSedes(getAllBased())
   };
   return (
     <>

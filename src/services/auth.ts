@@ -3,7 +3,7 @@ import { IApiResponse, Auth } from "../types";
 import { emailValidation, fetchApi } from "../utils";
 
 export const useAuthService = () => {
-  const signInWithEmailAndPassword = async (data: Auth,): Promise<IApiResponse> => fetchApi(AUTH_LOGIN_ENDPOINT, "POST", data)
+  const signInWithEmailAndPassword = async (data: Auth,): Promise<IApiResponse> => fetchApi({ url: AUTH_LOGIN_ENDPOINT, method: "POST", body: data })
 
   const signOut = async () => {
     return null;

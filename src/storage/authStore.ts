@@ -26,7 +26,7 @@ const useAuth = (): IAuthStore => {
   }, []);
 
   const saveSesion = ({ access_token, expires_in }) => {
-    const expirationDate = new Date(Date.now() + expires_in);
+    const expirationDate = new Date(Date.now() + (expires_in / 100));
     setAccessToken(access_token);
     setExpirationDate(expirationDate);
     setHasLogged(true);
@@ -47,8 +47,10 @@ const useAuth = (): IAuthStore => {
     return Boolean(eval(localStorage.getItem("hasLogged")));
   };
 
+  const getToken = (): string => access_token ?? localStorage.getItem("access_token")
+
   return {
-    access_token,
+    getToken,
     expirationDate,
     hasLogged,
     saveSesion,

@@ -2,12 +2,14 @@ import { deleteBasedById } from "../../services/sede";
 import { useBased } from "../../storage";
 import { ReactElement } from "react";
 import { statusOk } from "../../utils/validations";
+import { basedService } from "../../services";
 
-export const EliminarSede = ({ id }): ReactElement => {
+export const EliminarSede = ({ id, setSedes }): ReactElement => {
   const store = useBased();
-  const eliminar = () => {
+  const { remove } = basedService()
+  const eliminar = async () => {
     try {
-      const result = deleteBasedById(id); // await
+      const result = await remove(id); // await
       if (!statusOk(result.status)) {
         console.error(result.data.message);
       } else {
@@ -16,6 +18,7 @@ export const EliminarSede = ({ id }): ReactElement => {
         if (modal && modal instanceof HTMLDialogElement) {
           modal.close();
         }
+        setSedes(store.getAllBased())
       }
     } catch (error) {
       console.error(error);
@@ -40,7 +43,7 @@ export const EliminarSede = ({ id }): ReactElement => {
       <span>Está seguro de elimnar esta sede?</span>
       <div>
         <button
-          onClick={(e) => eliminar()}
+          onClick={eliminar}
           className="btn btn-sm text-white hover:bg-primary bg-primary"
         >
           Acceptar

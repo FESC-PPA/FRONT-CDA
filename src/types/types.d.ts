@@ -38,10 +38,11 @@ type FaceID = {
 };
 
 type Based = {
-  id?: number;
-  name: string;
-  location: string;
-  organization?: Organization;
+  basedId?: number
+  name: string
+  perimeterLocations: string
+  organizationId?: string
+  organization?: Organization
 };
 
 type Schedule = {
@@ -77,7 +78,7 @@ type Workdays = {
 };
 
 interface IAuthStore {
-  access_token: string | null;
+  getToken: () => string;
   expirationDate: Date | null;
   hasLogged: boolean;
   saveSesion: Function;

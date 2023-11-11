@@ -19,11 +19,13 @@ const useBased = () => {
   };
 
   const saveBased = (data: Based): void => {
-    updateBasedList([...basedList, data]);
+    const allBased = getAllBased()
+    updateBasedList([...allBased, data]);
   };
 
-  const getBasedById = (id: number): Based => {
-    return getAllBased().find((item) => item.id === id);
+  const getBasedById = (basedId: number): Based => {
+    const allBased = getAllBased()
+    return allBased.find((item) => item.basedId == basedId);
   };
 
   const getAllBased = (): Array<Based> => {
@@ -31,15 +33,15 @@ const useBased = () => {
     return JSON.parse(localStorage.getItem("based_list")) ?? basedList;
   };
 
-  const setBasedById = (id: number, data: Based): void => {
+  const setBasedById = (basedId: number, data: Based): void => {
     const updatedBasedList = basedList.map((item) =>
-      item.id === id ? data : item,
+      item.basedId === basedId ? data : item,
     );
     updateBasedList(updatedBasedList);
   };
 
-  const deleteBasedById = (id: number): void => {
-    const updatedBasedList = basedList.filter((item) => item.id !== id);
+  const deleteBasedById = (basedId: number): void => {
+    const updatedBasedList = basedList.filter((item) => item.basedId !== basedId);
     updateBasedList(updatedBasedList);
   };
 
@@ -50,6 +52,7 @@ const useBased = () => {
     setBasedById,
     deleteBasedById,
     updateBasedList,
+    basedList
   };
 };
 
