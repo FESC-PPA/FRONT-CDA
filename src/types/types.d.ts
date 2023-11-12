@@ -18,7 +18,7 @@ type User = {
   identify: string;
   firstName: string;
   lastName: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   organization?: Organization;
   role?: Role;
 };
@@ -48,7 +48,9 @@ type Based = {
 type Schedule = {
   id?: number;
   name: string;
-  based: Based;
+  basedId?: number
+  based?: Based;
+  workdays?: Workdays[]
 };
 
 type UserSchedule = {
@@ -65,12 +67,12 @@ type Attendance = {
 };
 
 type Weekdays = {
-  id?: number;
+  weekDaysId?: number;
   day: string;
 };
 
 type Workdays = {
-  id?: number;
+  workDaysId?: number;
   weekdays?: Weekdays;
   schedule?: Schedule;
   startTime: string;
@@ -115,10 +117,23 @@ interface AdminNavBarProps {
   navigation: Array<INavigationItem>;
 }
 
-interface IService {
-  create: (data) => Promise<IApiResponse>
+interface IService<T> {
+  create: (data: T) => Promise<IApiResponse>
   findAll: () => Promise<IApiResponse>
-  findOne: (by) => Promise<IApiResponse>
-  update: (data) => Promise<IApiResponse>
-  remove: (by) => Promise<IApiResponse>
+  findOne: (by: number) => Promise<IApiResponse>
+  update: (by: number, data: T) => Promise<IApiResponse>
+  remove: (by: number) => Promise<IApiResponse>
+}
+
+type IFetchApi = {
+  url: string,
+  method: string,
+  body?: any,
+  access_token?: string
+}
+
+type DataRegister = {
+  organization: Organization,
+  user: User,
+  auth: Auth
 }

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { basedService } from "../../services/based";
-import { useBased } from "../../storage";
-import { Based } from "../../types";
-import { statusOk } from "../../utils/validations";
+import { useBasedService } from "../../../services";
+import { useBased } from "../../../storage";
+import { Based } from "../../../types";
+import { statusOk } from "../../../utils";
 
 interface id {
   basedId?: number;
   setSedes: Function
 }
 export const FormularioSede = ({ basedId, setSedes }: id) => {
-  const { update, create } = basedService()
+  const { update, create } = useBasedService()
   const { setBasedById, saveBased, getBasedById } = useBased();
   const [nombreSede, setNombreSede] = useState("");
   const [ubicacionSede, setUbicacionSede] = useState("");
@@ -39,7 +39,7 @@ export const FormularioSede = ({ basedId, setSedes }: id) => {
           name: nombreSede,
           perimeterLocations: ubicacionSede,
         };
-        const response = await update(data);
+        const response = await update(basedId, data);
 
         if (!statusOk(response.status)) {
           console.error(response.data.message);

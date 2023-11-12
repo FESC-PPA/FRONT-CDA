@@ -1,13 +1,6 @@
-import { IApiResponse } from "../types"
-//const { getToken } = useAuth()
-type FfetchApi = {
-    url: string,
-    method: string,
-    body?: any,
-    access_token?: string
-}
+import { IApiResponse, IFetchApi } from "../types/types";
 
-export const fetchApi = async ({ url, method, body, access_token }: FfetchApi): Promise<IApiResponse> => {
+export const fetchApi = async ({ url, method, body, access_token }: IFetchApi): Promise<IApiResponse> => {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await fetch(url, {

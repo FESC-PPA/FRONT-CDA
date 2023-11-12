@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { DataRegister } from "../../../types";
+import { useAuthService } from "../../../services";
+import { statusOk } from "../../../utils";
 
 export const RegisterForm = () => {
+  const { register } = useAuthService()
+  const navigate = useNavigate();
+
   const [section, setSection] = useState(1);
 
   const [nit, setNit] = useState("");
@@ -12,7 +18,7 @@ export const RegisterForm = () => {
   const [apellidoAdmin, setApellidoAdmin] = useState("");
 
   const [correo, setCorreo] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  const [clave, setClave] = useState("");
 
   const handleNext = () => {
     setSection(section + 1);
@@ -22,8 +28,32 @@ export const RegisterForm = () => {
     setSection(section - 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    const data: DataRegister = {
+      user: {
+        firstName: nombreAdmin,
+        identify: idAdmin,
+        lastName: apellidoAdmin,
+      },
+      organization: {
+        name: nombreEmpresa,
+        nit: nit,
+      },
+      auth: {
+        email: correo,
+        password: clave,
+        active: true,
+
+      }
+    }
+    const result = await register(data)
+
+    if (statusOk(result.status)) {
+      navigate("/login");
+    } else {
+      console.error(result)
+    }
+    //e.preventDefault();
     // Submit logic
   };
 
@@ -192,8 +222,8 @@ export const RegisterForm = () => {
                 <input
                   type="password"
                   id="contraseña"
-                  value={contraseña}
-                  onChange={(e) => setContraseña(e.target.value)}
+                  value={clave}
+                  onChange={(e) => setClave(e.target.value)}
                   className="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-primary-light"
                 />
               </div>
@@ -251,7 +281,8 @@ export const RegisterForm = () => {
 
                 <button
                   className="inline-flex justify-center w-full px-4 py-2 mx-1 text-sm font-medium text-white bg-primary border border-transparent rounded-md shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                  type="submit"
+                  type="button"
+                  onClick={handleSubmit}
                 >
                   Registrar
                 </button>

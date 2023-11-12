@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../storage";
-import { useAuthService } from "../../services";
-import { statusOk } from "../../utils";
+import { useAuth } from "../../../storage";
+import { useAuthService } from "../../../services";
+import { statusOk } from "../../../utils";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");

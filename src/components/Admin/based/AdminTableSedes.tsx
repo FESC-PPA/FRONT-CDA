@@ -10,18 +10,18 @@ import {
   faFile,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { AdminModal, FormularioSede, EliminarSede } from "../";
-import { statusOk } from "../../utils";
-import { useBased } from "../../storage";
-import { Based } from "../../types";
+import { AdminModal, FormularioSede, EliminarSede } from "../..";
+import { statusOk } from "../../../utils";
+import { useBased } from "../../../storage";
+import { Based } from "../../../types";
 
-import { basedService } from "../../services";
+import { useBasedService } from "../../../services";
 
 export const AdminTableSedes = () => {
   const store = useBased();
   const [sedesList, setSedes] = useState<Based[]>([]);
   const [searchText, setSearchText] = useState("");
-  const { findAll } = basedService()
+  const { findAll } = useBasedService()
 
   const getBaseds = async () => {
     try {

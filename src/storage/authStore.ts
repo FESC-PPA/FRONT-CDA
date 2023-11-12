@@ -26,7 +26,7 @@ const useAuth = (): IAuthStore => {
   }, []);
 
   const saveSesion = ({ access_token, expires_in }) => {
-    const expirationDate = new Date(Date.now() + (expires_in / 100));
+    const expirationDate = new Date(Date.now() + (expires_in * 1000));
     setAccessToken(access_token);
     setExpirationDate(expirationDate);
     setHasLogged(true);
