@@ -21,9 +21,10 @@ export const FormularioHorario = ({ based }: IHorario) => {
 
   const agregarDia = () => {
     if (diaSemana && horaInicio && horaFin) {
+      const weekDay = getByDay(diaSemana)
       setHorario([
         ...horario,
-        { endTime: horaFin, startTime: horaInicio, weekdays: getByDay(diaSemana) },
+        { endTime: horaFin, startTime: horaInicio, weekDaysWeekDaysId: weekDay.weekDaysId, weekDays: weekDay },
       ]);
       //setDiaSemana();
       setHoraInicio("");
@@ -58,8 +59,8 @@ export const FormularioHorario = ({ based }: IHorario) => {
 
   // Ordenar el array horario en orden descendente por día, hora de inicio y hora de fin.
   const horarioOrdenado = [...horario].sort((a, b) => {
-    if (a.weekdays.day < b.weekdays.day) return 1;
-    if (a.weekdays.day > b.weekdays.day) return -1;
+    if (a.weekDays.day < b.weekDays.day) return 1;
+    if (a.weekDays.day > b.weekDays.day) return -1;
     if (a.startTime < b.startTime) return 1;
     if (a.startTime > b.startTime) return -1;
     if (a.endTime < b.endTime) return 1;
@@ -71,17 +72,21 @@ export const FormularioHorario = ({ based }: IHorario) => {
     if (horario.length > 0) {
       const data: Schedule = {
         name: nombreHorario,
-        basedId: based.basedId,
+        basedBasedId: based.basedId,
         based,
-        workdays: horario
+        workDays: horario
       }
+
 
       const result = await create(data)
       if (statusOk(result.status)) {
 
       }
+      console.log(result)
     }
   };
+
+  console.log(horaInicio, horaFin)
 
   return (
     <>
@@ -149,7 +154,7 @@ export const FormularioHorario = ({ based }: IHorario) => {
               {horarioOrdenado.map((dia, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{dia.weekdays.day}</td>
+                  <td>{dia.weekDays.day}</td>
                   <td>{dia.startTime}</td>
                   <td>{dia.endTime}</td>
                   <td>

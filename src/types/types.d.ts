@@ -1,139 +1,111 @@
-import { ReactNode } from "react";
-//import { IconDefinition } from '@fortawesome/fontawesome-common-types'
+//import { IconDefinition } from '@fortawesome/fontawesome-common-export types'
+export type Attendance = {
+  attendanceId?: number
+  date: Date
+  late: number
+  userScheduleUserScheduleId?: number
+  usersChedule?: UserSchedule
+  excuse?: Excuse
+}
 
-type Organization = {
-  id?: number;
-  nit: string;
-  name: string;
-};
+export type Auth = {
+  authId?: number
+  email: string
+  password: string
+  active?: boolean
+  userUserId?: number
+  user?: User
+}
 
-type Role = {
-  id?: number;
-  role: string;
-  details: string;
-};
-
-type User = {
-  id?: number;
-  identify: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber?: string;
-  organization?: Organization;
-  role?: Role;
-};
-
-type Auth = {
-  id?: number;
-  email: string;
-  password: string;
-  active?: boolean;
-  user?: User;
-};
-
-type FaceID = {
-  id?: number;
-  dara: any;
-  user?: User;
-};
-
-type Based = {
+export type Based = {
   basedId?: number
   name: string
   perimeterLocations: string
   organizationId?: string
   organization?: Organization
-};
+  schedule?: Schedule[]
+}
 
-type Schedule = {
-  id?: number;
+export type Excuse = {
+  excuseId?: number
+  status: number
+  resolutionDate?: Date
+  comment?: string
+  details?: string
+  attendanceAttendanceId?: number
+  userUserId?: number
+  attendance?: Attendance
+  usser?: User
+}
+
+export type FacialData = {
+  facialDataId?: number
+  dara: string
+  userUserId?: number
+  user?: User
+}
+
+export type Organization = {
+  organizationId?: number
+  nit: string
+  name: string
+  based?: Based[]
+  user?: User[]
+}
+
+export type Role = {
+  roleId?: number
+  role: string
+  details?: string
+  user?: User[]
+}
+
+export type Schedule = {
+  scheduleId?: number;
   name: string;
-  basedId?: number
+  basedBasedId?: number
   based?: Based;
-  workdays?: Workdays[]
+  usersChedule?: UserSchedule[]
+  workDays?: Workdays[]
 };
 
-type UserSchedule = {
-  id?: number;
-  schedule?: Schedule;
-  user?: User;
+export type User = {
+  userId?: number
+  identify: string
+  firstName: string
+  lastName: string
+  phoneNumber?: string
+  roleRoleId?: number
+  organizationId?: number
+  auth?: Auth
+  excuse?: Excuse[]
+  facialData?: FacialData
+  organization?: Organization
+  role?: Role
+  usersChedule?: UserSchedule[]
 };
 
-type Attendance = {
-  id?: number;
-  userSchedule?: UserSchedule;
-  date: Date;
-  late: number;
-};
-
-type Weekdays = {
-  weekDaysId?: number;
-  day: string;
-};
-
-type Workdays = {
-  workDaysId?: number;
-  weekdays?: Weekdays;
-  schedule?: Schedule;
-  startTime: string;
-  endTime: string;
-};
-
-interface IAuthStore {
-  getToken: () => string;
-  expirationDate: Date | null;
-  hasLogged: boolean;
-  saveSesion: Function;
-  logout: Function;
-  getHasLogged: Function;
+export type UserSchedule = {
+  userScheduleId?: number
+  scheduleScheduleId?: number
+  userUserId?: number
+  attendance?: Attendance[]
+  schedule?: Schedule
+  user?: User
 }
 
-interface IApiResponse {
-  data: any;
-  status: number;
+export type Weekdays = {
+  weekDaysId?: number
+  day: string,
+  workDays?: Workdays[]
 }
 
-type Children = {
-  children: ReactNode;
-};
-
-interface IAdminModal {
-  children: ReactNode;
-  id: string;
-  title: string;
-  label: string | ReactNode;
-  css?: string | null;
-  atributes?: object;
-}
-
-interface INavigationItem {
-  name: string;
-  href: string;
-  current: boolean;
-  //icon: IconDefinition
-}
-
-interface AdminNavBarProps {
-  navigation: Array<INavigationItem>;
-}
-
-interface IService<T> {
-  create: (data: T) => Promise<IApiResponse>
-  findAll: () => Promise<IApiResponse>
-  findOne: (by: number) => Promise<IApiResponse>
-  update: (by: number, data: T) => Promise<IApiResponse>
-  remove: (by: number) => Promise<IApiResponse>
-}
-
-type IFetchApi = {
-  url: string,
-  method: string,
-  body?: any,
-  access_token?: string
-}
-
-type DataRegister = {
-  organization: Organization,
-  user: User,
-  auth: Auth
+export type Workdays = {
+  workDaysId?: number
+  startTime: string
+  endTime: string
+  weekDaysWeekDaysId?: number
+  scheduleScheduleId?: number
+  schedule?: Schedule
+  weekDays?: Weekdays
 }

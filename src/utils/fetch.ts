@@ -1,4 +1,4 @@
-import { IApiResponse, IFetchApi } from "../types/types";
+import { IApiResponse, IFetchApi } from "../types";
 
 export const fetchApi = async ({ url, method, body, access_token }: IFetchApi): Promise<IApiResponse> => {
     return new Promise(async (resolve, reject) => {
