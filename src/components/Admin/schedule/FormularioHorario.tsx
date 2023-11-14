@@ -5,26 +5,30 @@ import { useScheduleService, useWeekDaysService } from "../../../services";
 import { statusOk } from "../../../utils";
 
 interface IHorario {
-  based: Based
+  based: Based;
 }
 
 export const FormularioHorario = ({ based }: IHorario) => {
-  const { findAll } = useWeekDaysService()
-  const { create } = useScheduleService()
+  const { findAll } = useWeekDaysService();
+  const { create } = useScheduleService();
   const [nombreHorario, setNombreHorario] = useState<string>();
   const [diaSemana, setDiaSemana] = useState<string>();
   const [horaInicio, setHoraInicio] = useState("");
   const [horaFin, setHoraFin] = useState("");
   const [horario, setHorario] = useState<Workdays[]>([] as Workdays[]);
-  const [weekDays, setWeekDays] = useState<Weekdays[]>([] as Weekdays[])
-
+  const [weekDays, setWeekDays] = useState<Weekdays[]>([] as Weekdays[]);
 
   const agregarDia = () => {
     if (diaSemana && horaInicio && horaFin) {
-      const weekDay = getByDay(diaSemana)
+      const weekDay = getByDay(diaSemana);
       setHorario([
         ...horario,
-        { endTime: horaFin, startTime: horaInicio, weekDaysWeekDaysId: weekDay.weekDaysId, weekDays: weekDay },
+        {
+          endTime: horaFin,
+          startTime: horaInicio,
+          weekDaysWeekDaysId: weekDay.weekDaysId,
+          weekDays: weekDay,
+        },
       ]);
       //setDiaSemana();
       setHoraInicio("");
@@ -33,12 +37,12 @@ export const FormularioHorario = ({ based }: IHorario) => {
   };
 
   const getById = (id): Weekdays => {
-    return weekDays.find((week) => week.weekDaysId == id)
-  }
+    return weekDays.find((week) => week.weekDaysId == id);
+  };
 
   const getByDay = (day: string): Weekdays => {
-    return weekDays.find((week) => week.day == day)
-  }
+    return weekDays.find((week) => week.day == day);
+  };
 
   const eliminarDia = (index) => {
     const nuevoHorario = horario.filter((dia, i) => i !== index);
@@ -47,15 +51,15 @@ export const FormularioHorario = ({ based }: IHorario) => {
 
   useEffect(() => {
     const t = async () => {
-      const result = await findAll()
-      console.log(result)
+      const result = await findAll();
+      console.log(result);
       if (statusOk(result.status)) {
-        setWeekDays(result.data)
-        setDiaSemana(weekDays[0]?.day)
+        setWeekDays(result.data);
+        setDiaSemana(weekDays[0]?.day);
       }
-    }
-    t()
-  }, [])
+    };
+    t();
+  }, []);
 
   // Ordenar el array horario en orden descendente por día, hora de inicio y hora de fin.
   const horarioOrdenado = [...horario].sort((a, b) => {
@@ -74,19 +78,17 @@ export const FormularioHorario = ({ based }: IHorario) => {
         name: nombreHorario,
         basedBasedId: based.basedId,
         based,
-        workDays: horario
-      }
+        workDays: horario,
+      };
 
-
-      const result = await create(data)
+      const result = await create(data);
       if (statusOk(result.status)) {
-
       }
-      console.log(result)
+      console.log(result);
     }
   };
 
-  console.log(horaInicio, horaFin)
+  console.log(horario, horaFin);
 
   return (
     <>
@@ -94,7 +96,12 @@ export const FormularioHorario = ({ based }: IHorario) => {
         <label className="label">
           <span className="label-text">Ingresa el nombre para el horaio</span>
         </label>
-        <input type="text" placeholder="nombre del horario" className="input input-bordered w-full" onChange={(e) => setNombreHorario(e.target.value)} />
+        <input
+          type="text"
+          placeholder="nombre del horario"
+          className="input input-bordered w-full"
+          onChange={(e) => setNombreHorario(e.target.value)}
+        />
       </div>
       <div className="form-control w-full">
         <label className="label">
@@ -115,7 +122,10 @@ export const FormularioHorario = ({ based }: IHorario) => {
               <tr key="inputsHorario">
                 <td>0</td>
                 <td>
-                  <select className="input" onChange={(e) => setDiaSemana(e.target.value)}>
+                  <select
+                    className="input"
+                    onChange={(e) => setDiaSemana(e.target.value)}
+                  >
                     {weekDays.map((day) => (
                       <option key={`day${day.weekDaysId}`} value={day.day}>
                         {day.day}
