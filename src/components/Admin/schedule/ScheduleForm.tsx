@@ -8,7 +8,7 @@ interface IHorario {
   based: Based;
 }
 
-export const FormularioHorario = ({ based }: IHorario) => {
+export const ScheduleFrom = ({ based }: IHorario) => {
   const { findAll } = useWeekDaysService();
   const { create } = useScheduleService();
   const [nombreHorario, setNombreHorario] = useState<string>();
@@ -19,6 +19,7 @@ export const FormularioHorario = ({ based }: IHorario) => {
   const [weekDays, setWeekDays] = useState<Weekdays[]>([] as Weekdays[]);
 
   const agregarDia = () => {
+    //console.log("click")
     if (diaSemana && horaInicio && horaFin) {
       const weekDay = getByDay(diaSemana);
       setHorario([
@@ -88,7 +89,7 @@ export const FormularioHorario = ({ based }: IHorario) => {
     }
   };
 
-  console.log(horario, horaFin);
+  //console.log(horario, horaFin);
 
   return (
     <>
@@ -155,7 +156,7 @@ export const FormularioHorario = ({ based }: IHorario) => {
                   <button
                     type="button"
                     className="btn bg-primary text-white"
-                    onClick={agregarDia}
+                    onClick={() => agregarDia()}
                   >
                     Agregar
                   </button>

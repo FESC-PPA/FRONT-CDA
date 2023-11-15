@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { statusOk } from "../../../utils";
 import { useBasedService } from "../../../services";
 
-export const EliminarSede = ({ id, setSedes }): ReactElement => {
+export const BasedDelete = ({ id, setSedes }): ReactElement => {
   const store = useBased();
   const { remove } = useBasedService()
   const eliminar = async () => {
@@ -13,7 +13,7 @@ export const EliminarSede = ({ id, setSedes }): ReactElement => {
         console.error(result.data.message);
       } else {
         store.deleteBasedById(id);
-        var modal = document.getElementById(`eliminarSedeModal${id}`);
+        var modal = document.getElementById(`BasedDeleteModal${id}`);
         if (modal && modal instanceof HTMLDialogElement) {
           modal.close();
         }

@@ -10,14 +10,14 @@ import {
   faFile,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { AdminModal, FormularioSede, EliminarSede } from "../..";
+import { AdminModal, BasedForm, BasedDelete } from "../..";
 import { statusOk } from "../../../utils";
 import { useBased } from "../../../storage";
 import { Based } from "../../../types";
 
 import { useBasedService } from "../../../services";
 
-export const AdminTableSedes = () => {
+export const BasedTable = () => {
   const store = useBased();
   const [sedesList, setSedes] = useState<Based[]>([]);
   const [searchText, setSearchText] = useState("");
@@ -83,7 +83,7 @@ export const AdminTableSedes = () => {
                   title="crear una nueva sede"
                   label="Nuena sede"
                 >
-                  <FormularioSede setSedes={setSedes} />
+                  <BasedForm setSedes={setSedes} />
                 </AdminModal>
               </div>
               <div className="overflow-hidden">
@@ -181,18 +181,18 @@ export const AdminTableSedes = () => {
                             css="btn bg-yellow-500 text-white hover:bg-yellow-700 tooltip tooltip-left"
                             atributes={{ "data-tip": "editar sede" }}
                           >
-                            <FormularioSede basedId={item.basedId} setSedes={setSedes} />
+                            <BasedForm basedId={item.basedId} setSedes={setSedes} />
                           </AdminModal>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <AdminModal
-                            id={`eliminarSedeModal${item.basedId}`}
+                            id={`BasedDeleteModal${item.basedId}`}
                             title={item.name}
                             label={<FontAwesomeIcon icon={faTrash} />}
                             css="btn bg-red-500 text-white hover:bg-red-700 tooltip tooltip-left"
                             atributes={{ "data-tip": "Eliminar sede" }}
                           >
-                            <EliminarSede id={item.basedId} setSedes={setSedes} />
+                            <BasedDelete id={item.basedId} setSedes={setSedes} />
                           </AdminModal>
                         </td>
                       </tr>

@@ -8,7 +8,7 @@ interface id {
   basedId?: number;
   setSedes: Function
 }
-export const FormularioSede = ({ basedId, setSedes }: id) => {
+export const BasedForm = ({ basedId, setSedes }: id) => {
   const { update, create } = useBasedService()
   const { setBasedById, saveBased, getBasedById } = useBased();
   const [nombreSede, setNombreSede] = useState("");

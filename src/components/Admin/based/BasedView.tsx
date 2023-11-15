@@ -5,20 +5,20 @@ import { ReactElement } from "react";
 import { useBasedService } from "../../../services";
 import { statusOk } from "../../../utils";
 import { AdminModal } from "../AdminModal";
-import { FormularioHorario } from "../schedule/FormularioHorario";
+import { ScheduleFrom } from "../schedule/ScheduleForm";
 import { ScheduleTableList } from "../schedule/ScheduleTableList";
 
-export const VerSede = ({ id }): ReactElement => {
+export const BasedView = ({ id }): ReactElement => {
   const store = useBased();
   const { findOne } = useBasedService();
   const [based, setBased] = useState<Based>();
-  const [schedule, setSchedule] = useState();
+  const [schedule, setSchedule] = useState<Schedule[]>();
 
   const getBased = async (id: number) => {
     const result = await findOne(id);
     console.log(result);
     if (statusOk(result.status)) {
-      setSchedule(result.data);
+      setSchedule(result.data.schedule);
     }
   };
 
@@ -45,13 +45,13 @@ export const VerSede = ({ id }): ReactElement => {
                 css="btn btn-primary"
                 atributes={{ "data-tip": "Agregar horario" }}
               >
-                <FormularioHorario based={based} />
+                <ScheduleFrom based={based} />
               </AdminModal>
               <button className=""></button>
             </div>
           </div>
 
-          <ScheduleTableList />
+          <ScheduleTableList schedule={schedule} setSchedule={setSchedule} />
         </div>
       </div>
     </>

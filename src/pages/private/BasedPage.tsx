@@ -1,12 +1,12 @@
 import { AdminLayout } from "../../layouts/AdminLayout";
 import { useParams } from "react-router-dom";
-import { VerSede } from "../../components";
+import { BasedView } from "../../components";
 
 const BasedPage = () => {
   const { id } = useParams();
   return (
     <AdminLayout>
-      <VerSede id={id} />
+      <BasedView id={id} />
     </AdminLayout>
   );
 };

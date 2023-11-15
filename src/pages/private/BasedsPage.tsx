@@ -1,10 +1,10 @@
 import { AdminLayout } from "../../layouts/AdminLayout";
-import { AdminTableSedes } from "../../components";
+import { BasedTable } from "../../components";
 
 const BasedsPage = () => {
   return (
     <AdminLayout>
-      <AdminTableSedes />
+      <BasedTable />
     </AdminLayout>
   );
 };
