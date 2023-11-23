@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 import { useBasedService } from "../../../services";
 import { statusOk } from "../../../utils";
 import { AdminModal } from "../AdminModal";
-import { ScheduleFrom } from "../schedule/ScheduleForm";
+import { ScheduleFrom } from "../schedule";
 import { ScheduleTableList } from "../schedule/ScheduleTableList";
 
 export const BasedView = ({ id }): ReactElement => {

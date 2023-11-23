@@ -19,7 +19,7 @@ export const ScheduleFrom = ({ based }: IHorario) => {
   const [weekDays, setWeekDays] = useState<Weekdays[]>([] as Weekdays[]);
 
   const agregarDia = () => {
-    //console.log("click")
+    console.log("");
     if (diaSemana && horaInicio && horaFin) {
       const weekDay = getByDay(diaSemana);
       setHorario([
